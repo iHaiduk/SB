@@ -1,0 +1,44 @@
+{
+  "name": "SiteBuilder",
+  "version": "0.0.0",
+  "authors": [
+    "Ihor Haiduk <htgroup.dev@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./Application/BowerLibrary",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "lodash": "latest",
+    "requirejs": "latest",
+    "jquery-ui": "latest",
+    "zepto": "latest",
+    "react": "latest"
+  },
+  "overrides": {
+    "jquery": {
+      "main": "dist/jquery.min.js"
+    },
+    "jquery-ui": {
+      "main": "jquery-ui.min.js"
+    },
+    "lodash": {
+      "main": "lodash.min.js"
+    },
+    "zepto": {
+      "main": "zepto.min.js"
+    },
+    "react": {
+      "main": [
+        "react.min.js",
+        "JSXTransformer.js"
+      ]
+    }
+  }
+}
