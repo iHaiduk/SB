@@ -2,22 +2,25 @@
   "name": "SiteBuilder",
   "version": "0.0.1",
   "devDependencies": {
-    "bower": "^1.4.1",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^2.3.1",
-    "gulp-bower": "0.0.10",
-    "gulp-cjsx": "^3.0.0",
-    "gulp-clean": "^0.3.1",
-    "gulp-git": "^1.2.4",
-    "gulp-jade": "^1.1.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-react": "^3.0.1",
-    "gulp-react-jade": "^0.2.0",
-    "gulp-sass": "^2.0.4",
-    "gulp-sync": "^0.1.4",
-    "main-bower-files": "^2.9.0"
+    "bower": "latest",
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-bower": "latest",
+    "gulp-cjsx": "latest",
+    "gulp-clean": "latest",
+    "gulp-git": "latest",
+    "gulp-imagemin": "latest",
+    "gulp-jade": "latest",
+    "gulp-notify": "latest",
+    "gulp-react": "latest",
+    "gulp-react-jade": "latest",
+    "gulp-sass": "latest",
+    "gulp-sync": "latest",
+    "imagemin-pngquant": "latest",
+    "main-bower-files": "latest"
   },
   "dependencies": {
-    "jade": "^1.11.0"
+    "jade": "latest"
   }
 }
