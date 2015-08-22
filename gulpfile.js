@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     mainBowerFiles = require('main-bower-files'),
+    gitWatch = require('gulp-git-watch'),
     browserSync = require('browser-sync').create();
 
 var path = {
@@ -27,11 +28,12 @@ var path = {
     view: "view/",
 
     source: "./Source/",
+
     // Library
     bowerPathLibrary: "BowerLibrary/",
     node_modulesPath: "./node_modules/",
-    // HTML, Template
 
+    // HTML, Template
     pathTemplate: "Templates/**/",
 
     // CSS
@@ -50,7 +52,7 @@ var path = {
 
 // Clean
 gulp.task('clean', function() {
-    return gulp.src(['.development'], {read: false})
+    gulp.src(['.development'], {read: false})
         .pipe(clean());
 });
 gulp.task('bowerPathLibraryClean', function() {
@@ -133,6 +135,31 @@ gulp.task('backend', function() {
         .pipe(gulp.dest(path.devDir + path.system));
 });
 
+// Browser-sync
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: path.devDir
+        }
+    });
+});
+
+// Git watcher
+gulp.task('git-watch', function() {
+    gitWatch()
+        .on('change', function(newHash, oldHash) {
+            var currentdate = new Date();
+            var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/"
+                + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
+            notify("Git CHANGES!");
+            console.log('CHANGES! FROM', oldHash, '->', newHash, datetime);
+        });
+});
+
 // Watch
 gulp.task('watch', function() {
     gulp.watch(path.source + path.pathTemplate + "*.jade", ['templates']);
@@ -142,13 +169,5 @@ gulp.task('watch', function() {
     gulp.watch(path.source + path.pathBackCode+'*.coffee', ['backend']);
 });
 
-gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: path.devDir
-        }
-    });
-});
-
 // Start
-gulp.task('default', gulpsync.sync(['clean', /*'pull'*/, 'bower', 'vendorCss', 'vendorJs', 'templates', 'sass', 'frontend', 'backend', 'browser-sync', 'watch']));
+gulp.task('default', gulpsync.sync(['clean', /*'pull'*/, 'bower', 'vendorCss', 'vendorJs', 'templates', 'sass', 'frontend', 'backend', 'browser-sync', 'git-watch', 'watch']));

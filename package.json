@@ -10,6 +10,7 @@
     "gulp-cjsx": "latest",
     "gulp-clean": "latest",
     "gulp-git": "latest",
+    "gulp-git-watch": "^0.1.0",
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",
     "gulp-notify": "latest",
