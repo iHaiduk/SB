@@ -1,3 +1,1 @@
 # SB
-test
-git-watch
