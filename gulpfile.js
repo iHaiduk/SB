@@ -14,6 +14,13 @@ var gulp = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
     gitWatch = require('gulp-git-watch'),
     browserSync = require('browser-sync').create();
+var runSequence = require('run-sequence');
+
+var config = {
+
+    autoUpdate: false
+
+};
 
 var path = {
     devDir: ".development/",
@@ -79,7 +86,7 @@ gulp.task('vendorJs', function() {
 });
 
 // Git
-gulp.task('pull', function(){
+gulp.task('gitUpdate', function(){
     git.pull('origin', 'master', function (err) {
         if (err) throw err;
     });
@@ -156,6 +163,9 @@ gulp.task('git-watch', function() {
                 + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds();
             notify("Git CHANGES!");
+            if(config.autoUpdate){
+                runSequence("gitUpdate");
+            }
             console.log('CHANGES! FROM', oldHash, '->', newHash, datetime);
         });
 });
@@ -170,4 +180,4 @@ gulp.task('watch', function() {
 });
 
 // Start
-gulp.task('default', gulpsync.sync(['clean', /*'pull'*/, 'bower', 'vendorCss', 'vendorJs', 'templates', 'sass', 'frontend', 'backend', 'browser-sync', 'git-watch', 'watch']));
+gulp.task('default', gulpsync.sync(['clean', 'gitUpdate', 'bower', 'vendorCss', 'vendorJs', 'templates', 'sass', 'frontend', 'backend', 'browser-sync', 'git-watch', 'watch']));

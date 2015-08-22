@@ -10,7 +10,7 @@
     "gulp-cjsx": "latest",
     "gulp-clean": "latest",
     "gulp-git": "latest",
-    "gulp-git-watch": "^0.1.0",
+    "gulp-git-watch": "latest",
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",
     "gulp-notify": "latest",
@@ -19,7 +19,8 @@
     "gulp-sass": "latest",
     "gulp-sync": "latest",
     "imagemin-pngquant": "latest",
-    "main-bower-files": "latest"
+    "main-bower-files": "latest",
+    "run-sequence": "latest"
   },
   "dependencies": {
     "jade": "latest"
