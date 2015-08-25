@@ -3,7 +3,7 @@ _Config =
 	port: 3000
 	mode: "local"
 	socket: true
-	publicFolder: ".development/view"
+	publicFolder: "../view"
 	dirViews: ".development/template"
 	viewEngine: "jade"
 	dataBase:
