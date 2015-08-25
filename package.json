@@ -14,13 +14,13 @@
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",
     "gulp-nodemon": "latest",
-    "gulp-notify": "latest",
     "gulp-react": "latest",
     "gulp-react-jade": "latest",
     "gulp-sass": "latest",
     "gulp-sync": "latest",
     "imagemin-pngquant": "latest",
     "main-bower-files": "latest",
+    "node-notifier": "latest",
     "run-sequence": "latest"
   },
   "dependencies": {

@@ -1,5 +1,20 @@
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  color: dodgerblue;
+  text-shadow: 0 0 10px #fff;
+}
+
 body{
-  background: linear-gradient(#e98a00, #f5aa2f);
-  color: white;
+  background: url("../../images/doctor9.png") no-repeat yellow;
+  background-size:contain;
+  background-position: center;
+  height: 100%;
   display: block;
+  border: 1px solid red;
+  box-shadow: 0 0 10px #fff;
 }

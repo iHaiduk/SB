@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     git = require('gulp-git'),
     clean = require('gulp-clean'),
     bower = require('gulp-bower'),
-    notify = require("gulp-notify"),
+    notifier = require('node-notifier'),
     cjsx = require('gulp-cjsx'),
     jade = require('gulp-jade'),
     react = require('gulp-react'),
@@ -22,7 +22,7 @@ var config = {
     autoUpdate: false,
     // we'd need a slight delay to reload browsers
     // connected to browser-sync after restarting nodemon
-    BROWSER_SYNC_RELOAD_DELAY: 500
+    BROWSER_SYNC_RELOAD_DELAY: 1500
 
 };
 
@@ -92,7 +92,7 @@ gulp.task('vendorJs', function() {
 
 // Git
 gulp.task('gitUpdate', function(){
-    git.pull('origin', 'master', function (err) {
+    git.pull('origin', 'master', {args: " -f"}, function (err) {
         if (err) throw err;
     });
 });
@@ -111,7 +111,7 @@ gulp.task('sass', function () {
             browsers: ["> 0%"],
             cascade: false
         }))
-        .pipe(gulp.dest(path.devDir + path.view + path.dirCss));
+        .pipe(gulp.dest(path.devDir + path.view + path.dirCss + path.dist));
 });
 
 // Images Optimization
@@ -159,7 +159,7 @@ gulp.task('nodemon', function (cb) {
         .on('restart', function onRestart() {
             // reload connected browsers after a slight delay
             setTimeout(function reload() {
-                browserSync.reload({stream:true});
+                browserSync.reload({stream:false});
             }, config.BROWSER_SYNC_RELOAD_DELAY);
         });
 });
@@ -199,6 +199,12 @@ gulp.task('git-watch', function() {
             if(config.autoUpdate){
                 runSequence("gitUpdate");
             }
+            var msg = {
+                sound: 'Bottle',
+                title: 'GIT CHANGES!!!',
+                message: 'Update please your server! '+ datetime
+            };
+            notifier.notify(msg, function (error) { console.log(error); });
             console.log('CHANGES! FROM', oldHash, '->', newHash, datetime);
         });
 });
@@ -213,4 +219,4 @@ gulp.task('watch', function() {
 });
 
 // Start All
-gulp.task('default', gulpsync.sync(['clean', 'gitUpdate', 'bower', 'vendorCss', 'vendorJs', 'templates', 'sass', 'frontend', 'backend', 'browser-sync', 'git-watch', 'watch']));
+gulp.task('default', gulpsync.sync(['clean', 'gitUpdate', 'bower', 'vendorCss', 'vendorJs', 'templates', 'sass', 'images', 'frontend', 'backend', 'browser-sync', 'git-watch', 'watch']));
