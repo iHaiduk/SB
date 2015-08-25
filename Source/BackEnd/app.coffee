@@ -1,16 +1,35 @@
-'use strict'
+applicationDirectory = __dirname + '/'
 express = require('express')
-http = require('http')
-path = require('path')
+favicon = require('serve-favicon')
+bodyParser = require("body-parser")
 app = express()
-server = http.createServer(app)
-app.get '/', (req, res) ->
-  res.send('<p>Hello World!!!</p> 777');
-  return
+path = require('path')
+global["http"] = require('http').Server(app)
+config = require(applicationDirectory + 'config')
 
-app.use express.static('public')
-server.listen 3000, 'localhost'
+### Path to express public directory ###
+pub = __dirname + '/' + config.publicFolder
+app.set 'views', config.dirViews
+app.set 'view engine', config.viewEngine
+app.use express['static'](pub)
+app.use bodyParser.json limit: '500mb'
+app.use bodyParser.urlencoded
+  limit: '500mb'
+  extended: false
 
-server.on 'listening', ->
-  console.log 'Express server started on port %s at %s', server.address().port, server.address().address
+
+### Adapter ###
+require(applicationDirectory + 'adapter')(config)
+require(applicationDirectory + 'class/Controller')::init();
+
+### Socket ###
+if config? and config.socket
+  global["socketIo"] = null
+
+### Routing ###
+require(applicationDirectory + 'routes')::init(app)
+
+### Start server ###
+http.listen config.port, ->
+  console.log 'Server started. Link: http(s)://' + config.url + ':' + config.port
   return

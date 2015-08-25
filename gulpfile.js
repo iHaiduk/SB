@@ -87,7 +87,7 @@ gulp.task('vendorCss', function() {
 });
 gulp.task('vendorJs', function() {
     return gulp.src(mainBowerFiles("**/*.js"))
-        .pipe(gulp.dest(path.devDir + path.dirJs + path.vendor));
+        .pipe(gulp.dest(path.devDir + path.view + path.dirJs + path.vendor));
 });
 
 // Git
@@ -100,7 +100,7 @@ gulp.task('gitUpdate', function(){
 // HTML
 gulp.task('templates', function() {
     gulp.src(path.source + path.pathTemplate + "**/*.jade")
-        .pipe(gulp.dest(path.devDir + path.view +  path.dirTemplate));
+        .pipe(gulp.dest(path.devDir + path.dirTemplate));
 });
 
 // CSS
@@ -141,6 +141,16 @@ gulp.task('backend', function() {
         .pipe(gulp.dest(path.devDir + path.system));
 });
 
+gulp.task('added', function () {
+    var assets = useref.assets();
+
+    return gulp.src(path.devDir + path.dirTemplate +'**/*.jade')
+        .pipe(assets)
+        .pipe(assets.restore())
+        .pipe(useref())
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('nodemon', function (cb) {
     var called = false;
     return nodemon({
@@ -149,7 +159,7 @@ gulp.task('nodemon', function (cb) {
         script: path.devDir + path.system + 'app.js',
 
         // watch core server file(s) that require server restart on change
-        watch: [path.devDir + path.system + 'app.js', path.devDir + path.system + "**/*.js"]
+        watch: [path.devDir + path.system + 'app.js', path.devDir + path.system + "**/*.js", path.devDir + path.dirTemplate + "**/*.*"]
     })
         .on('start', function onStart() {
             // ensure start only got called once
