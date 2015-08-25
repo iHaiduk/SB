@@ -141,16 +141,6 @@ gulp.task('backend', function() {
         .pipe(gulp.dest(path.devDir + path.system));
 });
 
-gulp.task('added', function () {
-    var assets = useref.assets();
-
-    return gulp.src(path.devDir + path.dirTemplate +'**/*.jade')
-        .pipe(assets)
-        .pipe(assets.restore())
-        .pipe(useref())
-        .pipe(gulp.dest('dist'));
-});
-
 gulp.task('nodemon', function (cb) {
     var called = false;
     return nodemon({

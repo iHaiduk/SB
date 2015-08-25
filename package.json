@@ -19,7 +19,6 @@
     "gulp-react-jade": "latest",
     "gulp-sass": "latest",
     "gulp-sync": "latest",
-    "gulp-useref": "^1.3.0",
     "imagemin-pngquant": "latest",
     "main-bower-files": "latest",
     "run-sequence": "latest"
