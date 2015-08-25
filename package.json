@@ -1,5 +1,5 @@
 {
-  "name": "SiteBuilder",
+  "name": "SiteBiulder",
   "version": "0.0.1",
   "devDependencies": {
     "bower": "latest",
@@ -13,6 +13,7 @@
     "gulp-git-watch": "latest",
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",
+    "gulp-nodemon": "latest",
     "gulp-notify": "latest",
     "gulp-react": "latest",
     "gulp-react-jade": "latest",
@@ -23,6 +24,19 @@
     "run-sequence": "latest"
   },
   "dependencies": {
+    "express": "latest",
     "jade": "latest"
-  }
+  },
+  "description": "",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iHaiduk/SB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iHaiduk/SB/issues"
+  },
+  "homepage": "https://github.com/iHaiduk/SB#readme"
 }

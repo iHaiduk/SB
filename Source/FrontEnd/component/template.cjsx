@@ -1,3 +1,4 @@
+'use strict'
 Template =
     index: ->`<div class="neat-component" id="name">
         <p onClick={this.handleClick}>

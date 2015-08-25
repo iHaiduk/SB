@@ -1,4 +1,4 @@
-
+'use strict'
 #Template = require("template")
 
 NeatComponent = React.createClass
